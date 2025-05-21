@@ -50,3 +50,41 @@ FROM ratings
 JOIN movies ON ratings.movie_id = movies.movie_id
 GROUP BY movies.title
 ORDER BY avg_rating DESC;
+```
+
+
+### 2️⃣ Number of Ratings by Genre 
+```sql
+SELECT movies.genre, COUNT(ratings.rating_id) AS number_of_ratings
+FROM ratings
+JOIN movies ON ratings.movie_id = movies.movie_id
+GROUP BY movies.genre
+ORDER BY number_of_ratings DESC;
+```
+
+
+### 3️⃣ Average Rating by Age Group 
+```sql
+SELECT users.age_group, ROUND(AVG(ratings.rating), 2) AS avg_rating
+FROM ratings
+JOIN users ON ratings.user_id = users.user_id
+GROUP BY users.age_group
+ORDER BY avg_rating DESC;
+```
+
+
+### 4️⃣ Most Active Users (Rating Count) 
+```sql
+SELECT users.user_id, users.age_group, COUNT(ratings.rating_id) AS total_ratings
+FROM ratings
+JOIN users ON ratings.user_id = users.user_id
+GROUP BY users.user_id, users.age_group
+ORDER BY total_ratings DESC;
+```
+
+
+
+
+
+
+
